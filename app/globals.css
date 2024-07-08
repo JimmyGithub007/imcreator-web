@@ -17,17 +17,25 @@
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  overflow: hidden;
+}
+
+::-webkit-scrollbar {
+  display: none;
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+.swiper-slide {
+  display: flex !important;
+  justify-content: center;
+}
+
+.custom-input::placeholder {
+  color: black;
+  font-weight: bold;
 }
