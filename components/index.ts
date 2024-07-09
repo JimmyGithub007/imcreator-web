@@ -5,6 +5,7 @@ import Navbar from "./Navbar";
 import Order from "./Order";
 import Panel from "./Panel";
 import Service from "./Service";
+import Shell from "./Shell";
 
 export {
     About,
@@ -13,5 +14,6 @@ export {
     Navbar,
     Order,
     Panel,
-    Service
+    Service,
+    Shell
 }

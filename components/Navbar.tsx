@@ -20,7 +20,7 @@ const menus = [
 
 const Navbar = () => {
     const { floor } = useSelector((state: RootState) => state.floor);
-    const [isOpen, setIsOpen] = useState<boolean>(false);
+    const [ isOpen, setIsOpen ] = useState<boolean>(false);
     const dispatch = useDispatch();
 
     return (<motion.div 
@@ -96,7 +96,7 @@ const Navbar = () => {
                         </motion.button>
                     </div>
                     <div className="bg-white m-4 rounded-lg shadow-sm">
-                        <Footer />
+                        {/*<Footer />*/}
                     </div>
                 </motion.div>
             }

@@ -1,15 +1,24 @@
 "use client";
 
+import { FaFacebook, FaInstagram } from "react-icons/fa";
 import Image from "next/image";
-import { FaFacebook, FaInstagram, FaWaze } from "react-icons/fa";
 
-const Footer = () => {
+type contactProps = {
+    addressLine1: string,
+    addressLine2: string,
+    facebook: string,
+    instagram: string,
+}
+
+const Footer = ({ contact }: { contact: contactProps }) => {
     return (<div className="border-t-black flex flex-col gap-4 justify-between lg:w-[1024px] px-4 py-8 w-full sm:border-t-2 sm:flex-row sm:h-24 sm:items-center">
         <div className="flex gap-2 items-center">
-            <FaFacebook className="h-8 rounded-full shadow-md text-[#4267B2] w-8" />
-            <div className="bg-gradient-to-b flex from-[#833ab4] h-8 items-center justify-center rounded-full shadow-md to-[#fcb045] via-[#fd1d1d] w-8">
+            <a href={contact.facebook} target="_blank"><FaFacebook className="h-8 rounded-full shadow-md text-[#4267B2] w-8" /></a>
+            <a className="bg-gradient-to-b flex from-[#833ab4] h-8 items-center justify-center rounded-full shadow-md to-[#fcb045] via-[#fd1d1d] w-8"
+                href={contact.instagram} target="_blank"
+            >
                 <FaInstagram className="text-white text-2xl" />
-            </div>
+            </a>
             <span>IMCreator</span>
         </div>
         <div className="flex flex-col gap-2 sm:flex-row text-xs sm:items-center">
@@ -22,7 +31,7 @@ const Footer = () => {
             <div className="flex flex-col gap-2">
                 <div className="flex flex-col">
                     <span>Headquarter:</span>
-                    <span>5, Jalan Rosmerah 2.5, Johor Bahru, Malaysia</span>
+                    <span>{contact.addressLine1}<br/>{contact.addressLine2}</span>
                 </div>
                 <div className="flex flex-col">
                     <span>SG Office:</span>
