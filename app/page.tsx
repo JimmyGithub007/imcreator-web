@@ -28,9 +28,7 @@ const Home = () => {
   }, [floor])
 
   useEffect(() => {
-
     window.addEventListener('wheel', handleScroll);
-
     return () => {
       window.removeEventListener('wheel', handleScroll);
     };

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Outfit } from "next/font/google";
 import { StoreProvider } from "@/store/StoreProvider";
 import "./globals.css";
+import { Shell } from "@/components";
 
 const outfit = Outfit({ subsets: ["latin"], weight: '400' });
 
@@ -17,7 +18,11 @@ export default function RootLayout({
 }>) {
   return (<StoreProvider>
     <html lang="en">
-      <body className={outfit.className}>{children}</body>
+      <body className={outfit.className}>
+        <Shell>
+          {children}
+        </Shell>
+      </body>
     </html>    
   </StoreProvider>);
 }

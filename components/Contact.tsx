@@ -3,24 +3,41 @@
 import { FaPhoneAlt } from "react-icons/fa";
 import { MdMail } from "react-icons/md";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { addDoc, collection } from "firebase/firestore";
+import { addDoc, collection, getDocs, limit, query } from "firebase/firestore";
 import { db } from "@/firebase/config";
 import { motion } from "framer-motion";
 import { Footer } from ".";
 import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
-type contactProps = {
+type messageProps = {
     name: string,
     email: string,
     subject: string,
     message: string,
 }
 
-const Contact = () => {
-    const router = useRouter();
-    const { register, handleSubmit, formState: { errors }, reset, control, getValues, setError, clearErrors } = useForm<contactProps>();
+type contactProps = {
+    email: string,
+    addressLine1: string,
+    addressLine2: string,
+    facebook: string,
+    instagram: string,
+}
 
-    const onSubmit: SubmitHandler<contactProps> = async (data) => {
+const Contact = () => {
+    const [ contact, setContact ] = useState<contactProps>({
+        email: "",
+        addressLine1: "",
+        addressLine2: "",
+        facebook: "",
+        instagram: "",
+    });
+    
+    const router = useRouter();
+    const { register, handleSubmit, formState: { errors }, reset, control, getValues, setError, clearErrors } = useForm<messageProps>();
+
+    const onSubmit: SubmitHandler<messageProps> = async (data) => {
         try {
             const docRef = await addDoc(collection(db, "mailbox"), {
                 name: data.name,
@@ -34,6 +51,25 @@ const Contact = () => {
             console.log(error);
         }
     }
+
+    const getContact = async () => {
+        const q = query(collection(db, "contact"), limit(1));
+        const contactSnapshot = await getDocs(q);
+        if (contactSnapshot.docs.length > 0) {
+            const contactTemp = contactSnapshot.docs[0].data();
+            setContact({
+                email: contactTemp.email,
+                addressLine1: contactTemp.addressLine1,
+                addressLine2: contactTemp.addressLine2,
+                facebook: contactTemp.facebook,
+                instagram: contactTemp.instagram,
+            })
+        }
+    }
+
+    useEffect(() => {
+        getContact();
+    }, [])
 
     return (<div id="floor4" className="flex flex-col items-center px-8">
         <div className="flex items-center lg:w-[1024px] pt-24 h-screen sm:h-[calc(100vh-192px)] sm:pt-0">
@@ -98,7 +134,7 @@ const Contact = () => {
                         </div>
                         <div className="flex flex-col">
                             <span className="text-sm">E-mail</span>
-                            <span className="font-bold text-xs">sales@imcreator.asia</span>
+                            <span className="font-bold text-xs">{contact.email}</span>
                         </div>
                     </motion.div>
                     <motion.div
@@ -141,7 +177,7 @@ const Contact = () => {
                         type={`text`}
                         {...register("name", { required: "Name is required", })}
                     />
-                    <div className="flex h-4 items-center">{ !!errors.name && <span className="text-red-600 text-sm">*{errors.name?.message}</span> }</div>
+                    <div className="flex h-4 items-center">{ !!errors.name && <span className="text-red-600 text-xs">*{errors.name?.message}</span> }</div>
                     <input
                         className={`border-[#d0c7c1] bg-[#d0c7c1] border-2 custom-input duration-300 focus:border-[inherit] focus:ring-2 focus:outline-none focus:ring-[#d0c7c1] px-2 py-2 sm:py-3 rounded-md shadow-md w-full`}
                         placeholder={`E-MAIL`}
@@ -156,21 +192,21 @@ const Contact = () => {
                             })
                         }
                     />
-                    <div className="flex h-4 items-center">{ !!errors.email && <span className="text-red-600 text-sm">*{errors.email?.message}</span> }</div>
+                    <div className="flex h-4 items-center">{ !!errors.email && <span className="text-red-600 text-xs">*{errors.email?.message}</span> }</div>
                     <input
                         className={`border-[#d0c7c1] bg-[#d0c7c1] border-2 custom-input duration-300 focus:border-[inherit] focus:ring-2 focus:outline-none focus:ring-[#d0c7c1] px-2 py-2 sm:py-3 rounded-md shadow-md w-full`}
                         placeholder={`SUBJECT`}
                         type={`text`}
                         {...register("subject", { required: "Subject is required", })}
                     />
-                    <div className="flex h-4 items-center">{ !!errors.subject && <span className="text-red-600 text-sm">*{errors.subject?.message}</span> }</div>
+                    <div className="flex h-4 items-center">{ !!errors.subject && <span className="text-red-600 text-xs">*{errors.subject?.message}</span> }</div>
                     <textarea
                         className={`border-[#d0c7c1] bg-[#d0c7c1] border-2 custom-input duration-300 focus:border-[inherit] focus:ring-2 focus:outline-none focus:ring-[#d0c7c1] px-2 py-3 resize-none rounded-md shadow-md w-full`}
                         placeholder={`MESSAGE`}
                         rows={8}
                         {...register("message", { required: "Message is required", })}
                     />
-                    <div className="flex h-4 items-center">{ !!errors.message && <span className="text-red-600 text-sm">*{errors.message?.message}</span> }</div>
+                    <div className="flex h-4 items-center">{ !!errors.message && <span className="text-red-600 text-xs">*{errors.message?.message}</span> }</div>
                     <button type="submit" className="border-2 border-[#d0c7c1] bg-[#d0c7c1] duration-300 font-bold focus:border-[inherit] focus:outline-none focus:ring-[#d0c7c1] focus:ring-2 hover:bg-[#d0c7c1]/90 py-2 rounded-3xl shadow-md text-white w-36">SUBMIT</button>
                 </motion.form>
             </div>
@@ -184,7 +220,7 @@ const Contact = () => {
                 }
             }}
             className="bg-[#f5f4f2] hidden justify-center w-screen px-8 sm:flex">
-            <Footer />
+            <Footer contact={{ ...contact }} />
         </motion.div>
     </div>)
 }

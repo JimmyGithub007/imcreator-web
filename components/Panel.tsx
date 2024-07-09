@@ -97,7 +97,7 @@ const Panel = () => {
                         className="text-md sm:text-lg md:text-xl">YOUR ONE-STOP PRINTING SOLUTION
                     </motion.h1>
                 </div>
-                <div className="grid grid-cols-3 gap-2">
+                <div className="flex gap-2 lg:justify-end">
                     {
                         [1, 2, 3].map((value, key) => (
                             <motion.img
