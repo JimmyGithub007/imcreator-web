@@ -23,17 +23,10 @@ type contactProps = {
     addressLine2: string,
     facebook: string,
     instagram: string,
-}
+    phoneNo: string,
+  }
 
-const Contact = () => {
-    const [ contact, setContact ] = useState<contactProps>({
-        email: "",
-        addressLine1: "",
-        addressLine2: "",
-        facebook: "",
-        instagram: "",
-    });
-    
+const Contact = ({ contact }: { contact: contactProps }) => {
     const router = useRouter();
     const { register, handleSubmit, formState: { errors }, reset, control, getValues, setError, clearErrors } = useForm<messageProps>();
 
@@ -52,29 +45,10 @@ const Contact = () => {
         }
     }
 
-    const getContact = async () => {
-        const q = query(collection(db, "contact"), limit(1));
-        const contactSnapshot = await getDocs(q);
-        if (contactSnapshot.docs.length > 0) {
-            const contactTemp = contactSnapshot.docs[0].data();
-            setContact({
-                email: contactTemp.email,
-                addressLine1: contactTemp.addressLine1,
-                addressLine2: contactTemp.addressLine2,
-                facebook: contactTemp.facebook,
-                instagram: contactTemp.instagram,
-            })
-        }
-    }
-
-    useEffect(() => {
-        getContact();
-    }, [])
-
     return (<div id="floor4" className="flex flex-col items-center px-8">
-        <div className="flex items-center lg:w-[1024px] pt-24 h-screen sm:h-[calc(100vh-192px)] sm:pt-0">
+        <div className="flex items-center lg:w-[1024px]">
             <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-                <div className="flex flex-col gap-4">
+                <div className="flex flex-col gap-2 sm:gap-4">
                     <motion.h1
                         initial={{ opacity: 0, x: -50 }}
                         whileInView={{
@@ -100,7 +74,7 @@ const Contact = () => {
                                 duration: 1,
                                 type: "spring",
                             }
-                        }} className="font-bold italic text-sm md:text-md">
+                        }} className="font-bold italic text-sm sm:text-md md:text-lg">
                         Please fill out the form below to spend us an email
                     </motion.span>
                     <motion.span
@@ -114,7 +88,7 @@ const Contact = () => {
                                 duration: 1,
                                 type: "spring",
                             }
-                        }} className="text-sm">
+                        }} className="text-sm sm:text-md md:text-lg">
                         If you have any inquiries regarding our products and services, kindly drop us a message, and we will contact you soon.
                     </motion.span>
                     <motion.div
@@ -132,9 +106,9 @@ const Contact = () => {
                         <div className="bg-[#ef534f] flex h-8 items-center justify-center rounded-full shadow-md sm:h-10 sm:w-10 w-8">
                             <MdMail className="text-white text-xl sm:text-2xl" />
                         </div>
-                        <div className="flex flex-col">
-                            <span className="text-sm">E-mail</span>
-                            <span className="font-bold text-xs">{contact.email}</span>
+                        <div className="flex flex-col text-sm sm:text-md">
+                            <span className="">E-mail</span>
+                            <span className="font-bold">{contact.email}</span>
                         </div>
                     </motion.div>
                     <motion.div
@@ -152,9 +126,9 @@ const Contact = () => {
                         <div className="bg-black flex h-8 items-center justify-center rounded-full shadow-md sm:h-10 sm:w-10 w-8">
                             <FaPhoneAlt className="text-white text-xl sm:text-2xl" />
                         </div>
-                        <div className="flex flex-col">
-                            <span className="text-sm">Contact Number</span>
-                            <span className="text-xs"></span>
+                        <div className="flex flex-col text-sm sm:text-md">
+                            <span className="">Contact Number</span>
+                            <span className="font-bold">{contact.phoneNo}</span>
                         </div>
                     </motion.div>
                 </div>
@@ -177,7 +151,7 @@ const Contact = () => {
                         type={`text`}
                         {...register("name", { required: "Name is required", })}
                     />
-                    <div className="flex h-4 items-center">{ !!errors.name && <span className="text-red-600 text-xs">*{errors.name?.message}</span> }</div>
+                    <div className="flex h-3 sm:h-4 items-center">{ !!errors.name && <span className="text-red-600 text-xs">*{errors.name?.message}</span> }</div>
                     <input
                         className={`border-[#d0c7c1] bg-[#d0c7c1] border-2 custom-input duration-300 focus:border-[inherit] focus:ring-2 focus:outline-none focus:ring-[#d0c7c1] px-2 py-2 sm:py-3 rounded-md shadow-md w-full`}
                         placeholder={`E-MAIL`}
@@ -192,21 +166,21 @@ const Contact = () => {
                             })
                         }
                     />
-                    <div className="flex h-4 items-center">{ !!errors.email && <span className="text-red-600 text-xs">*{errors.email?.message}</span> }</div>
+                    <div className="flex h-3 sm:h-4 items-center">{ !!errors.email && <span className="text-red-600 text-xs">*{errors.email?.message}</span> }</div>
                     <input
                         className={`border-[#d0c7c1] bg-[#d0c7c1] border-2 custom-input duration-300 focus:border-[inherit] focus:ring-2 focus:outline-none focus:ring-[#d0c7c1] px-2 py-2 sm:py-3 rounded-md shadow-md w-full`}
                         placeholder={`SUBJECT`}
                         type={`text`}
                         {...register("subject", { required: "Subject is required", })}
                     />
-                    <div className="flex h-4 items-center">{ !!errors.subject && <span className="text-red-600 text-xs">*{errors.subject?.message}</span> }</div>
+                    <div className="flex h-3 sm:h-4 items-center">{ !!errors.subject && <span className="text-red-600 text-xs">*{errors.subject?.message}</span> }</div>
                     <textarea
                         className={`border-[#d0c7c1] bg-[#d0c7c1] border-2 custom-input duration-300 focus:border-[inherit] focus:ring-2 focus:outline-none focus:ring-[#d0c7c1] px-2 py-3 resize-none rounded-md shadow-md w-full`}
                         placeholder={`MESSAGE`}
-                        rows={8}
+                        rows={5}
                         {...register("message", { required: "Message is required", })}
                     />
-                    <div className="flex h-4 items-center">{ !!errors.message && <span className="text-red-600 text-xs">*{errors.message?.message}</span> }</div>
+                    <div className="flex h-3 sm:h-4 items-center">{ !!errors.message && <span className="text-red-600 text-xs">*{errors.message?.message}</span> }</div>
                     <button type="submit" className="border-2 border-[#d0c7c1] bg-[#d0c7c1] duration-300 font-bold focus:border-[inherit] focus:outline-none focus:ring-[#d0c7c1] focus:ring-2 hover:bg-[#d0c7c1]/90 py-2 rounded-3xl shadow-md text-white w-36">SUBMIT</button>
                 </motion.form>
             </div>
@@ -219,8 +193,8 @@ const Contact = () => {
                     duration: 1,
                 }
             }}
-            className="bg-[#f5f4f2] hidden justify-center w-screen px-8 sm:flex">
-            <Footer contact={{ ...contact }} />
+            className="bg-[#f5f4f2] bottom-0 fixed hidden justify-center w-screen px-8 sm:flex">
+            <Footer contact={contact} />
         </motion.div>
     </div>)
 }
