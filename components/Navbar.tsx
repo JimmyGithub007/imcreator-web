@@ -41,7 +41,7 @@ const Navbar = () => {
             <div className="gap-4 hidden items-center md:flex">
                 {
                     menus.map((value, key) => (
-                        <a className={`${floor === value.floor ? "cursor-normal font-bold text-[#8a6b51]" : "cursor-pointer"} duration-300 text-center w-24`} key={key} onClick={() => { dispatch(setFloor(value.floor)) }}>{value.title}</a>
+                        <a className={`${floor === value.floor ? "cursor-normal font-bold text-[#8a6b51] scale-[1.2]" : "cursor-pointer"} duration-300 text-center w-24`} key={key} onClick={() => { dispatch(setFloor(value.floor)) }}>{value.title}</a>
                     ))
                 }
             </div>
@@ -77,7 +77,7 @@ const Navbar = () => {
                     <div className="flex flex-col items-center gap-4 font-bold text-2xl pt-[64px]">
                         {
                             menus.map((value, key) => (
-                                <a className={`${floor === value.floor ? "cursor-normal font-bold text-[#8a6b51]" : "cursor-pointer"} duration-300 text-center`} key={key} onClick={() => { dispatch(setFloor(value.floor)); setIsOpen(false); }}>{value.title}</a>
+                                <a className={`${floor === value.floor ? "cursor-normal font-bold text-[#8a6b51] scale-[1.2]" : "cursor-pointer"} duration-300 text-center`} key={key} onClick={() => { dispatch(setFloor(value.floor)); setIsOpen(false); }}>{value.title}</a>
                             ))
                         }
                         <motion.button

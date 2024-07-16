@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import { Outfit } from "next/font/google";
+import { Outfit, Spectral } from "next/font/google";
 import { StoreProvider } from "@/store/StoreProvider";
 import "./globals.css";
 import { Shell } from "@/components";
 
-const outfit = Outfit({ subsets: ["latin"], weight: '400' });
+const spectral = Spectral({ subsets: ["latin"], weight: '400' });
 
 export const metadata: Metadata = {
   title: "IMCREATOR",
@@ -18,7 +18,7 @@ export default function RootLayout({
 }>) {
   return (<StoreProvider>
     <html lang="en">
-      <body className={outfit.className}>
+      <body className={spectral.className}>
         <Shell>
           {children}
         </Shell>
