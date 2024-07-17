@@ -46,7 +46,7 @@ const Contact = ({ contact }: { contact: contactProps }) => {
     }
 
     return (<div id="floor4" className="flex flex-col items-center px-8">
-        <div className="flex items-center lg:w-[1024px]">
+        <div className="flex items-center lg:w-[1024px] h-[calc(100vh-192px)]">
             <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                 <div className="flex flex-col gap-2 sm:gap-4">
                     <motion.h1
@@ -193,7 +193,7 @@ const Contact = ({ contact }: { contact: contactProps }) => {
                     duration: 1,
                 }
             }}
-            className="bg-[#f5f4f2] bottom-0 fixed hidden justify-center w-screen px-8 sm:flex">
+            className="hidden justify-center w-screen px-8 sm:flex">
             <Footer contact={contact} />
         </motion.div>
     </div>)
