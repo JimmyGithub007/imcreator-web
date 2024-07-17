@@ -68,7 +68,7 @@ const Home = () => {
   }, [])
 
   return (
-    <main>
+    <main className="bg-[#f5f4f2]">
       <motion.header
         id="navbar"
         initial={{
