@@ -11,6 +11,7 @@ import Image from "next/image";
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
+import CustomDirectionButton from '@/widgets/CustomDirectionButton';
 
 type customerPros = {
     name: string,
@@ -94,13 +95,8 @@ const About = () => {
             </div>
         </motion.div>
         <div className="flex flex-col text-center w-screen lg:w-[1024px] px-8 lg:px-0">
-            <div className="absolute left-0 hidden xl:block">
-                <button onClick={() => swiperRef.current?.slidePrev()} className="border-r-2 border-y-2 border-black duration-300 rounded-r-full flex h-40 hover:opacity-60 items-center justify-center relative w-28">
-                    <div className="absolute bg-black h-[1.5px] left-[35px] w-[calc(100vw-70px)]"></div>
-                    <div className="border-black border-t-2 border-l-2 h-8 -rotate-45 w-8"></div>
-                </button>
-            </div>
-            <div className="bg-[#f5f4f2] flex flex-col gap-2 sm:gap-3 md:gap-4 z-50">
+            <CustomDirectionButton direction="left" swiperFuc={() => swiperRef.current?.slidePrev() } />
+            <div className="flex flex-col gap-2 sm:gap-3 md:gap-4 z-50">
                 <motion.h1
                     initial={{ opacity: 0, y: 50 }}
                     whileInView={{
@@ -176,12 +172,7 @@ const About = () => {
                     <button onClick={() => swiperRef.current?.slideNext()} className="block xl:hidden text-[#86654a] text-6xl"><RiArrowRightWideLine /></button>
                 </motion.div>
             </div>
-            <div className="absolute right-0 hidden xl:block">
-                <button onClick={() => swiperRef.current?.slideNext()} className="border-l-2 border-y-2 border-black duration-300 rounded-l-full flex h-40 hover:opacity-60 items-center justify-center relative w-28">
-                    <div className="absolute bg-black h-[1.5px] right-[35px] w-[calc(100vw-70px)]"></div>
-                    <div className="border-black border-b-2 border-r-2 h-8 -rotate-45 w-8"></div>
-                </button>
-            </div>
+            <CustomDirectionButton direction="right" swiperFuc={() => swiperRef.current?.slideNext() } />
         </div>
     </div>)
 }
