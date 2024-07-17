@@ -82,7 +82,15 @@ const Home = () => {
             duration: 0.5
           }
         }}
-        className="flex justify-center px-8 sticky top-0 z-50">
+        className="flex flex-col items-center justify-center sticky top-0 z-50">
+        <div className="bg-[#86654a] flex gap-80 font-bold items-center h-12 overflow-hidden text-[#f0e2c2] w-full whitespace-nowrap">
+          <div>NEW PROMOTIONS | UP TO 70% OFF</div>
+          <div>NEW PROMOTIONS | UP TO 70% OFF</div>
+          <div>NEW PROMOTIONS | UP TO 70% OFF</div>
+          <div>NEW PROMOTIONS | UP TO 70% OFF</div>
+          <div>NEW PROMOTIONS | UP TO 70% OFF</div>
+          <div>NEW PROMOTIONS | UP TO 70% OFF</div>
+        </div>
         <div className="border-b-2 border-b-black flex h-16 sm:h-24 items-center justify-between lg:w-[1024px] px-4 w-full">
           <Image alt="logo" className="h-[80px] w-[80px] sm:h-[150px] sm:w-[150px]" height={150} width={150} src={`/assets/logo/logo.png`} />
           <div className="gap-4 hidden items-center md:flex">
@@ -106,7 +114,7 @@ const Home = () => {
         </div>
       </motion.header>
       <Swiper
-        className="h-[calc(100vh-64px)] sm:h-[calc(100vh-96px)]"
+        className="h-[calc(100vh-112px)] sm:h-[calc(100vh-144px)]"
         direction={"vertical"}
         modules={[Mousewheel]}
         mousewheel={true}
