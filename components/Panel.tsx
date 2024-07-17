@@ -6,11 +6,7 @@ import { collection, getDocs, orderBy, query } from "firebase/firestore";
 import { db } from "@/firebase/config";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay } from 'swiper/modules';
-import { motion } from "framer-motion"; import { useSelector } from "react-redux";
-import { RootState } from "@/store";
-import { GoArrowRight } from "react-icons/go";
-import CustomDirectionButton from "@/widgets/CustomDirectionButton";
-;
+import { motion } from "framer-motion";
 
 type banners = {
     sortingId: number,
@@ -18,9 +14,14 @@ type banners = {
 }
 
 const Panel = () => {
-    const [swiper, setSwiper] = useState<any>(null);
+    const swiperRef = useRef<any>();
     const [slideId, setSlideId] = useState(0);
     const [banners, setBanners] = useState<banners[]>();
+    const [width, setWidth] = useState<number>(0);
+
+    const updateDimensions = () => {
+        if (typeof window !== "undefined") setWidth(window.innerWidth - (((window.innerWidth - 1024) / 2) + 1024 + 35));
+    }
 
     const getBanners = async () => {
         const bannerQuery = await getDocs(query(collection(db, "banners"), orderBy("sortingId"))); // updated
@@ -40,9 +41,26 @@ const Panel = () => {
         getBanners();
     }, [])
 
+    useEffect(() => {
+        window.addEventListener("resize", updateDimensions);
+        return () => window.removeEventListener("resize", updateDimensions);
+    }, []);
+
+    useEffect(() => {
+        updateDimensions();
+    }, [])
+
     return (<div className="flex flex-col gap-4 lg:w-[1024px] lg:px-0 px-8 w-screen">
         <div className="">
-            <CustomDirectionButton className="top-[calc(50%-80px)]" direction="left" swiperFuc={() => swiper.slidePrev() } />
+            <motion.div
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1, transition: { duration: 1 } }}
+                className={`absolute left-0 hidden xl:block top-[calc(50%-80px)]`}>
+                <button onClick={() => swiperRef.current.slidePrev()} className="border-r-2 border-y-2 border-black duration-300 rounded-r-full flex h-40 hover:opacity-60 items-center justify-center relative w-28">
+                    <div className="absolute bg-black h-[1.5px] left-[35px]" style={{ width: width + "px" }}></div>
+                    <div className="border-black border-t-2 border-l-2 h-8 -rotate-45 w-8"></div>
+                </button>
+            </motion.div>
             <Swiper
                 autoplay={{
                     delay: 3000,
@@ -54,7 +72,9 @@ const Panel = () => {
                 onSlideChange={(swiperCore) => {
                     setSlideId(swiperCore.realIndex)
                 }}
-                onSwiper={setSwiper}
+                onSwiper={(swiper) => {
+                    swiperRef.current = swiper;
+                }}
                 pagination={{
                     dynamicBullets: true,
                 }}
@@ -74,7 +94,15 @@ const Panel = () => {
                     ))
                 }
             </Swiper>
-            <CustomDirectionButton className="top-[calc(50%-80px)]" direction="right" swiperFuc={() => swiper.slideNext() } />
+            <motion.div
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1, transition: { duration: 1 } }}
+                className={`absolute right-0 hidden xl:block top-[calc(50%-80px)]`}>
+                <button onClick={() => swiperRef.current.slideNext()} className="border-l-2 border-y-2 border-black duration-300 rounded-l-full flex h-40 hover:opacity-60 items-center justify-center relative w-28">
+                    <div className="absolute bg-black h-[1.5px] right-[35px]" style={{ width: width + "px" }}></div>
+                    <div className="border-black border-b-2 border-r-2 h-8 -rotate-45 w-8"></div>
+                </button>
+            </motion.div>
             <div className="flex justify-end gap-2 p-4">
                 {
                     banners?.map((_, key) => (
