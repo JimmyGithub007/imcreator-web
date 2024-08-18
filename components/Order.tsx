@@ -10,6 +10,7 @@ import { motion } from 'framer-motion';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
+import { MaskText } from '.';
 
 type orderStepPros = {
     sortingId: number,
@@ -40,38 +41,16 @@ const Order = () => {
         getOrderSteps();
     }, [])
 
-
     return (<div id="floor3" className="flex flex-col gap-8 items-center">
-        <div className="flex flex-col gap-4 items-center lg:w-[800px] px-8">
-            <motion.h1
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{
-                    opacity: 1,
-                    y: 0,
-                    transition: {
-                        duration: 0.8,
-                    }
-                }}
-                className="font-bold text-2xl sm:text-3xl lg:text-4xl">HOW TO ORDER
-            </motion.h1>
-            <motion.span
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{
-                    opacity: 1,
-                    y: 0,
-                    transition: {
-                        delay: 0.2,
-                        duration: 0.8,
-                    }
-                }} className="text-sm sm:text-md md:text-lg">
-                We’re passionate about bringing your creative ideas to life with our extensive range of high quality printing services. Whether you’re looking for something personal or professional, we’ve got you covered with a variety of products tailored to meet your needs
-            </motion.span>
+        <div className="flex flex-col sm:gap-4 items-center lg:w-[800px] px-8">
+            <MaskText className="font-bold text-xl sm:text-2xl md:text-3xl lg:text-4xl">CUSTOM MADE</MaskText>
+            <MaskText className="text-sm sm:text-md md:text-lg">Highlight your identity and express yourself through clothes.</MaskText>
         </div>
         <motion.div
-            initial={{ opacity: 0, y: 50 }}
+            initial={{ opacity: 0, x: 50 }}
             whileInView={{
                 opacity: 1,
-                y: 0,
+                x: 0,
                 transition: {
                     bounce: 0.4,
                     delay: 0.4,

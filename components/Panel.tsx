@@ -1,12 +1,13 @@
 
 "use client";
 
+import { MaskText } from ".";
+import { db } from "@/firebase/config";
+import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { collection, getDocs, orderBy, query } from "firebase/firestore";
-import { db } from "@/firebase/config";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay } from 'swiper/modules';
-import { motion } from "framer-motion";
 
 type banners = {
     sortingId: number,
@@ -112,45 +113,19 @@ const Panel = () => {
             </div>
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-2">
-            <div className="flex flex-col gap-4 justify-center">
-                <motion.h1
-                    initial={{ opacity: 0, x: -50 }}
-                    whileInView={{
-                        opacity: 1,
-                        x: 0,
-                        transition: {
-                            bounce: 0.4,
-                            delay: 0.2,
-                            duration: 1,
-                            type: "spring",
-                        }
-                    }}
-                    className="font-bold text-3xl sm:text-4xl md:text-5xl">WELCOME TO IMCREATOR
-                </motion.h1>
-                <motion.h1
-                    initial={{ opacity: 0, x: -50 }}
-                    whileInView={{
-                        opacity: 1,
-                        x: 0,
-                        transition: {
-                            bounce: 0.4,
-                            delay: 0.4,
-                            duration: 1,
-                            type: "spring",
-                        }
-                    }}
-                    className="text-md sm:text-lg md:text-xl">YOUR ONE-STOP PRINTING SOLUTION
-                </motion.h1>
+            <div className="flex flex-col gap-2 sm:gap-4 justify-center">
+                <MaskText className="font-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl">WELCOME TO IMCREATOR</MaskText>
+                <MaskText className="text-sm sm:text-md md:text-lg lg:text-xl">YOUR ONE-STOP PRINTING SOLUTION</MaskText>
             </div>
             <div className="flex gap-2 lg:justify-end">
                 {
                     [1, 2, 3].map((value, key) => (
                         <motion.div
                             key={key}
-                            initial={{ opacity: 0, y: 50 }}
-                            animate={{
+                            initial={{ opacity: 0, x: 50 }}
+                            whileInView={{
                                 opacity: 1,
-                                y: 0,
+                                x: 0,
                                 transition: {
                                     bounce: 0.4,
                                     delay: 0.2 * value,
@@ -158,7 +133,7 @@ const Panel = () => {
                                     type: "spring",
                                 }
                             }}
-                            className="h-24 md:h-40 md:w-40 overflow-hidden rounded-md sm:h-32 sm:w-32 w-24"
+                            className="h-24 md:h-40 md:w-40 overflow-hidden rounded-md shadow-md sm:h-32 sm:w-32 w-24"
                         >
                             <img
                                 alt={value.toString()}

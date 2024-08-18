@@ -6,6 +6,8 @@ import Order from "./Order";
 import Panel from "./Panel";
 import Service from "./Service";
 import Shell from "./Shell";
+import MaskText from "./MaskText";
+import FramerMagnetic from "./FramerMagnetic";
 
 export {
     About,
@@ -15,5 +17,7 @@ export {
     Order,
     Panel,
     Service,
-    Shell
+    Shell,
+    FramerMagnetic,
+    MaskText
 }

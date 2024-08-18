@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { BsMessenger, BsWhatsapp } from "react-icons/bs";
 import { HiMenuAlt3 } from "react-icons/hi";
 import { IoIosClose } from "react-icons/io";
-import { About, Contact, Footer, Navbar, Order, Panel, Service } from "@/components";
+import { About, Contact, Footer, FramerMagnetic, Navbar, Order, Panel, Service } from "@/components";
 import { plusFloor, minusFloor, setFloor } from "@/store/slice/floorSlice";
 import { AnimatePresence, motion } from "framer-motion";
 import { RootState } from "@/store";
@@ -16,11 +16,14 @@ import { db } from "@/firebase/config";
 import Image from "next/image";
 import 'swiper/css';
 
+const whatsappUrl = process.env.NEXT_PUBLIC_WHATSAPP;
+const messengerUrl = process.env.NEXT_PUBLIC_MESSENGER;
+
 const menus = [
   { floor: 0, title: "HOME" },
   { floor: 1, title: "ABOUT" },
   { floor: 2, title: "OUR SERVICES" },
-  { floor: 3, title: "HOW TO ORDER" },
+  { floor: 3, title: "CUSTOM MADE" },
   { floor: 4, title: "CONTACT" }
 ];
 
@@ -83,14 +86,14 @@ const Home = () => {
           }
         }}
         className="flex flex-col items-center justify-center sticky top-0 z-50">
-        <div className="bg-[#86654a] flex gap-80 font-bold items-center h-12 overflow-hidden text-[#f0e2c2] w-full whitespace-nowrap">
+        {/*<div className="bg-[#86654a] flex gap-80 font-bold items-center h-12 overflow-hidden text-[#f0e2c2] w-full whitespace-nowrap">
           <div>NEW PROMOTIONS | UP TO 70% OFF</div>
           <div>NEW PROMOTIONS | UP TO 70% OFF</div>
           <div>NEW PROMOTIONS | UP TO 70% OFF</div>
           <div>NEW PROMOTIONS | UP TO 70% OFF</div>
           <div>NEW PROMOTIONS | UP TO 70% OFF</div>
           <div>NEW PROMOTIONS | UP TO 70% OFF</div>
-        </div>
+        </div>*/}
         <div className="border-b-2 border-b-black flex h-16 sm:h-24 items-center justify-between lg:w-[1024px] px-4 w-full">
           <Image alt="logo" className="h-[80px] w-[80px] sm:h-[150px] sm:w-[150px]" height={150} width={150} src={`/assets/logo/logo.png`} />
           <div className="gap-4 hidden items-center md:flex">
@@ -114,7 +117,7 @@ const Home = () => {
         </div>
       </motion.header>
       <Swiper
-        className="h-[calc(100vh-112px)] sm:h-[calc(100vh-144px)]"
+        className="h-[calc(100vh-64px)] sm:h-[calc(100vh-96px)]"
         direction={"vertical"}
         modules={[Mousewheel]}
         mousewheel={true}
@@ -125,7 +128,7 @@ const Home = () => {
       >
         <SwiperSlide><Panel /></SwiperSlide>
         <SwiperSlide><About /></SwiperSlide>
-        <SwiperSlide><Service /></SwiperSlide>
+        <SwiperSlide><Service floorSwiper={swiper} /></SwiperSlide>
         <SwiperSlide><Order /></SwiperSlide>
         <SwiperSlide><Contact contact={contact} /></SwiperSlide>
       </Swiper>
@@ -138,11 +141,18 @@ const Home = () => {
             bounce: 0,
             duration: 0.8
           }}
-          className="fixed bottom-2 right-16 gap-2 hidden sm:flex">
-          <BsMessenger className="cursor-pointer text-[#86654a] text-5xl" />
-          <BsWhatsapp className="cursor-pointer text-[#86654a] text-5xl" />
+          className="fixed bottom-4 right-16 gap-2 hidden sm:flex z-50">
+          <FramerMagnetic><BsMessenger className="cursor-pointer duration-300 hover:opacity-80 text-[#86654a] text-5xl" onClick={() => window.open(messengerUrl, '_blank')} /></FramerMagnetic>
+          <FramerMagnetic><BsWhatsapp className="cursor-pointer duration-300 hover:opacity-80 text-[#86654a] text-5xl" onClick={() => window.open(whatsappUrl, '_blank')} /></FramerMagnetic>
         </motion.div>}
       </AnimatePresence>
+      <motion.div className="flex sm:hidden flex-col gap-2 fixed left-2 top-[50%]">
+        {
+          [0, 1, 2, 3, 4].map((_, key) => (
+            <button key={key} className={`${floor === key ? "bg-[#86654a] scale-[1.7]" : "bg-[#86654a]/40"} duration-300 h-2 rounded-full shadow-sm shadow-blue-950/40 w-2`}></button>
+          ))
+        }
+      </motion.div>
       <AnimatePresence>
         {isOpen &&
           <motion.div
@@ -160,7 +170,7 @@ const Home = () => {
               duration: 0.3
             }}
             className="bg-[#f5f4f2] fixed h-screen left-0 top-0 w-screen z-50">
-            <div className="flex flex-col items-center font-bold text-2xl pt-[64px]">
+            <div className="flex flex-col items-center font-bold text-2xl">
               <motion.button
                 whileHover={{ scale: 1.2, rotate: 360 }}
                 whileTap={{
@@ -176,7 +186,7 @@ const Home = () => {
                 <IoIosClose />
               </motion.button>
               {
-                menus.map((value, key) => (<motion.div 
+                menus.map((value, key) => (<motion.div
                   initial={{
                     x: "100%"
                   }}
