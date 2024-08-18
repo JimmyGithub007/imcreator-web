@@ -100,7 +100,7 @@ const Service = ({ floorSwiper }: { floorSwiper:any }) => {
                                             <img className="duration-100 object-contain h-64" alt={value.title} src={value.imageUrl} />
                                         </div>
                                         <div className="flex h-10 items-center justify-center">
-                                            <span className="font-bold text-lg">{value.title}</span>
+                                            <span className="font-bold text-md sm:text-lg">{value.title}</span>
                                         </div>
                                     </div>
                                     <div className="flip-card-back border-2 border-[#86654a] flex flex-col p-2 rounded-sm shadow-md bg-[#fff5e1]">

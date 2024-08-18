@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { BsMessenger, BsWhatsapp } from "react-icons/bs";
 import { HiMenuAlt3 } from "react-icons/hi";
 import { IoIosClose } from "react-icons/io";
-import { About, Contact, Footer, FramerMagnetic, Navbar, Order, Panel, Service } from "@/components";
+import { About, Contact, Footer, FramerMagnetic, Loading, Navbar, Order, Panel, Service } from "@/components";
 import { plusFloor, minusFloor, setFloor } from "@/store/slice/floorSlice";
 import { AnimatePresence, motion } from "framer-motion";
 import { RootState } from "@/store";
@@ -38,8 +38,9 @@ type contactProps = {
 
 const Home = () => {
   const dispatch = useDispatch();
-  const [swiper, setSwiper] = useState<any>(null);
-  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [ loading, setLoading ] = useState<boolean>(true);
+  const [ swiper, setSwiper ] = useState<any>(null);
+  const [ isOpen, setIsOpen ] = useState<boolean>(false);
   const { floor } = useSelector((state: RootState) => state.floor);
   const [contact, setContact] = useState<contactProps>({
     email: "",
@@ -69,6 +70,17 @@ const Home = () => {
   useEffect(() => {
     getContact();
   }, [])
+
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      setLoading(false);
+    }, 500);
+    return () => {
+      clearTimeout(timeoutId);
+    };
+  }, []);
+
+  if (loading) return <div className="flex items-center justify-center h-screen w-screen"><Loading /></div>
 
   return (
     <main className="bg-[#f5f4f2]">
