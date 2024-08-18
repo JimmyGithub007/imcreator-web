@@ -3,6 +3,9 @@
 import { FaFacebook, FaInstagram } from "react-icons/fa";
 import Image from "next/image";
 
+const googleMapUrl = process.env.NEXT_PUBLIC_GOOGLE_MAP;
+const wazeUrl = process.env.NEXT_PUBLIC_WAZE;
+
 type contactProps = {
     email: string,
     addressLine1: string,
@@ -24,8 +27,8 @@ const Footer = ({ contact }: { contact: contactProps }) => {
         </div>
         <div className="flex flex-col gap-2 sm:flex-row text-xs sm:items-center">
             <div className="flex gap-2">
-                <a href={`https://www.google.com/maps/place/5,+Jalan+Ros+Merah+2%2F5,+Taman+Johor+Jaya,+81100+Johor+Bahru,+Johor/@1.5346262,103.7898599,17z/data=!3m1!4b1!4m6!3m5!1s0x31da6c38b59bb047:0xf81e8a13337ac060!8m2!3d1.5346208!4d103.7924348!16s%2Fg%2F11n0mphtfz?entry=ttu`}><Image alt="" className="rounded-md shadow-md" height={32} width={32} src={`/assets/icons/googlemap.png`} /></a>
-                <a href={`https://waze.com/ul?q=5%2C%20Jalan%20Rosmerah%202%2F5%2C%20Johor%20Bahru%2C%20Malaysia`} className="bg-[#05c8f7] flex rounded-md h-8 items-center justify-center shadow-md w-8">
+                <a href={googleMapUrl}><Image alt="" className="rounded-md shadow-md" height={32} width={32} src={`/assets/icons/googlemap.png`} /></a>
+                <a href={wazeUrl} className="bg-[#05c8f7] flex rounded-md h-8 items-center justify-center shadow-md w-8">
                     <Image alt="" height={24} width={24} src={`/assets/icons/waze.png`} />
                 </a>
             </div>
@@ -36,7 +39,7 @@ const Footer = ({ contact }: { contact: contactProps }) => {
                 </div>
                 <div className="flex flex-col">
                     <span>SG Office:</span>
-                    <span>need update</span>
+                    <span>7 Soon Lee Street #03-29 Ispace. Singapore 627608</span>
                 </div>
             </div>
         </div>
