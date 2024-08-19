@@ -108,7 +108,7 @@ const Order = () => {
                                     <img className="duration-100 object-contain h-64 hover:hue-rotate-30" alt="" src={value.imageUrl} />
                                 </div>
                                 <div className="flex h-16">
-                                    <span className="font-bold text-center text-md sm:text-lg">{value.title}</span>
+                                    <span className="font-bold text-center text-md lg:text-lg">{value.title}</span>
                                 </div>
                             </div>
                         </SwiperSlide>
