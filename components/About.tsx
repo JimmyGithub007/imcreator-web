@@ -54,7 +54,7 @@ const About = () => {
         updateDimensions();
     }, [])
 
-    return (<div id="floor1" className="flex flex-col gap-2 sm:gap-4 md:gap-8 items-center justify-center">
+    return (<div id="floor1" className="flex flex-col gap-2 sm:gap-4 md:gap-4 lg:gap-8 items-center justify-center">
         <motion.div
             initial={{ opacity: 0 }}
             whileInView={{
@@ -64,9 +64,11 @@ const About = () => {
                 }
             }}
             className="gap-16 grid-cols-1 lg:grid grid-cols-2 lg:w-[1024px] px-8 lg:px-0">
-            <Image alt="" className="cursor-pointer duration-300 object-cover hover:hue-rotate-30 rounded-md shadow-md" height={540} width={1080} src={`/assets/about/about.jpg`} />
-            <div className="flex flex-col sm:gap-2 md:gap-3 lg:gap-4">
-                <MaskText className="font-bold text-xl sm:text-2xl md::text-3xl lg:text-4xl">Welcome to IMCreator</MaskText>
+            <div className="w-full sm:w-[500px] lg:w-full">
+                <Image alt="" className="cursor-pointer duration-300 object-cover hover:hue-rotate-30 rounded-md shadow-md" height={540} width={1080} src={`/assets/about/about.jpg`} />
+            </div>
+            <div className="flex flex-col gap-2 lg:gap-4">
+                <MaskText className="font-bold text-md sm:text-xl md:text-2xl lg:text-3xl">Welcome to IMCreator</MaskText>
                 <MaskText className="font-bold text-xs sm:text-sm md:text-md lg:text-lg">WHO WE ARE</MaskText>
                 <MaskText className="text-sm sm:text-md md:text-lg">
                     We are a team of dedicated professionals with years of experience in the printing industry. As a leading personalized printing service provider, we specialize in high-quality custom apparel and accessories. Our mission is to offer you a seamless and enjoyable experience as you design unique t-shirts, hoodies, caps, office uniforms, and more.
@@ -83,9 +85,9 @@ const About = () => {
                     <div className="border-black border-t-2 border-l-2 h-8 -rotate-45 w-8"></div>
                 </button>
             </motion.div>
-            <div className="flex flex-col gap-2 sm:gap-4 md:gap-8 z-50">
-                <div className="flex flex-col sm:gap-2 items-center">
-                    <MaskText className="font-bold text-xl sm:text-2xl md::text-3xl lg:text-4xl">Our Clients</MaskText>
+            <div className="flex flex-col gap-2 md:gap-4 lg:gap-8 z-50">
+                <div className="flex flex-col lg:gap-2 items-center">
+                    <MaskText className="font-bold text-md sm:text-xl md:text-2xl lg:text-4xl">Our Clients</MaskText>
                     <MaskText className="text-sm sm:text-md md:text-lg">
                         We are proud to have worked with a diverse range of clients, from small businesses to large organizations.
                     </MaskText>
