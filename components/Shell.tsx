@@ -43,6 +43,7 @@ const Shell = ({ children }: { children: ReactNode }) => {
         }
     }, [pathname])
 
+    return children;
     if (pathname == "/" || pathname.includes("/quotation") || pathname == "/admin/login") return children;
 
     return (<motion.div className="bg-[#f5f4f2] flex items-center">
