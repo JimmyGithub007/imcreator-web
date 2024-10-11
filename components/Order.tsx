@@ -24,9 +24,9 @@ type customMadeStepsProps = {
 }
 
 const customMadeSteps:customMadeStepsProps[] = [
-    { title: "Choose Color & Material", imageUrl: "/assets/orders/customMadeStep1.jpg" },
     { title: "Select Apparel Pattern", imageUrl: "/assets/orders/customMadeStep2.jpg" },
-    { title: "Determine Decoration On Apparel", imageUrl: "/assets/orders/customMadeStep3.jpg" },
+    { title: "Choose Color & Material", imageUrl: "/assets/orders/customMadeStep1.jpg" },
+    { title: "Confirm Your Design", imageUrl: "/assets/orders/customMadeStep3.jpg" },
     { title: "Leave your Contact Information", imageUrl: "/assets/orders/customMadeStep4.jpg" }
 ]
 
@@ -107,7 +107,7 @@ const Order = () => {
                                 <div className="flex h-64 items-center justify-center">
                                     <img className="duration-100 object-contain h-64 hover:hue-rotate-30" alt="" src={value.imageUrl} />
                                 </div>
-                                <div className="flex h-16">
+                                <div className="flex justify-center h-16">
                                     <span className="font-bold text-center text-md lg:text-lg">{value.title}</span>
                                 </div>
                             </div>

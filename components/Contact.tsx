@@ -76,7 +76,7 @@ const Contact = ({ contact }: { contact: contactProps }) => {
                 <div className="flex flex-col gap-1 sm:gap-4">
                     <MaskText className="font-bold text-xl sm:text-2xl md:text-3xl lg:text-4xl">Contact Us</MaskText>
                     <MaskText className="font-bold italic pr-2 text-xs sm:text-sm md:text-md lg:text-lg">
-                        Please fill out the form below to spend us an email
+                        Please fill out the form to send us an email
                     </MaskText>
                     <MaskText className="text-xs sm:text-sm md:text-md lg:text-lg">
                         If you have any inquiries regarding our products and services, kindly drop us a message, and we will contact you soon.
