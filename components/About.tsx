@@ -28,7 +28,7 @@ const About = () => {
     }
 
     const getCustomers = async () => {
-        const customersQuery = await getDocs(query(collection(db, "customers"))); // updated
+        /*const customersQuery = await getDocs(query(collection(db, "customers"))); // updated
         const customers = customersQuery.docs.map(async (doc) => {
             const b = doc.data();
             return {
@@ -38,7 +38,19 @@ const About = () => {
         });
 
         const resolvedCustomers = await Promise.all(customers);
-        setCustomers(resolvedCustomers);
+        setCustomers(resolvedCustomers);*/
+        setCustomers([
+            { name: "Daikin", logoUrl: "/assets/about/Daikin_logo_PNG_(4).png" },
+            { name: "德教会", logoUrl: "/assets/about/de.png" },
+            { name: "DHL", logoUrl: "/assets/about/DHL-Logo-PNG2.png" },
+            { name: "Doterra Wellness Advocate", logoUrl: "/assets/about/doterra-wellness-advocate-colors.png" },
+            { name: "Elf", logoUrl: "/assets/about/elf.png" },
+            { name: "Stellar International School", logoUrl: "/assets/about/IMG_3042.png" },
+            { name: "LIZA", logoUrl: "/assets/about/np_24552_1691372405.png" },
+            { name: "新加坡惠安公会", logoUrl: "/assets/about/Screenshot 2024-10-09 at 2.48.14 PM.png" },
+            { name: "Shiseido", logoUrl: "/assets/about/Shiseido_(4).png" },
+            { name: "MAD COFFEE", logoUrl: "/assets/about/Untitled-1.png" }
+        ])
     };
 
     useEffect(() => {
@@ -127,7 +139,7 @@ const About = () => {
                                             opacity: 1,
                                             scale: 1,
                                             transition: {
-                                                duration: 0.2,
+                                                duration: 0.3,
                                             }
                                         }}
                                         className="h-16 md:h-24 object-contain sm:h-32" alt={value.name} src={value.logoUrl} 
