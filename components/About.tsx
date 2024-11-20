@@ -1,11 +1,12 @@
 "use client";
 
-import { db } from '@/firebase/config';
+//import { db } from '@/firebase/config';
 import { motion } from 'framer-motion';
-import { collection, getDocs, query } from 'firebase/firestore';
+//import { collection, getDocs, query } from 'firebase/firestore';
 import { useEffect, useRef, useState } from 'react';
 import { RiArrowLeftWideLine, RiArrowRightWideLine } from 'react-icons/ri';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay } from 'swiper/modules';
 import Image from "next/image";
 
 import 'swiper/css';
@@ -75,16 +76,16 @@ const About = () => {
                     duration: 1,
                 }
             }}
-            className="gap-16 grid-cols-1 lg:grid grid-cols-2 lg:w-[1024px] px-8 lg:px-0">
+            className="flex flex-col gap-8 grid-cols-1 lg:grid grid-cols-2 lg:w-[1024px] px-8 lg:px-0">
             <div className="w-full sm:w-[500px] lg:w-full">
-                <Image alt="" className="cursor-pointer duration-300 object-cover hover:hue-rotate-30 rounded-md shadow-md" height={540} width={1080} src={`/assets/about/about.jpg`} />
+                <Image alt="" className="cursor-pointer duration-300 object-cover opacity-90 hover:scale-105 rounded-md shadow-sm" height={540} width={1080} src={`/assets/about/DSC00594-Enhanced-NR-3.jpg`} />
             </div>
             <div className="flex flex-col gap-2 lg:gap-4">
-                <MaskText className="font-bold text-md sm:text-xl md:text-2xl lg:text-3xl">Welcome to IMCreator</MaskText>
-                <MaskText className="font-bold text-xs sm:text-sm md:text-md lg:text-lg">WHO WE ARE</MaskText>
-                <MaskText className="text-sm sm:text-md md:text-lg">
+                <div className="font-bold text-md sm:text-xl md:text-2xl lg:text-3xl">Welcome to IMCreator</div>
+                <div className="font-bold text-xs sm:text-sm md:text-md lg:text-lg">WHO WE ARE</div>
+                <div className="text-sm sm:text-md md:text-lg">
                     We are a team of dedicated professionals with years of experience in the printing industry. As a leading personalized printing service provider, we specialize in high-quality custom apparel and accessories. Our mission is to offer you a seamless and enjoyable experience as you design unique t-shirts, hoodies, caps, office uniforms, and more.
-                </MaskText>
+                </div>
             </div>
         </motion.div>
         <div className="flex flex-col text-center w-screen lg:w-[1024px] px-8 lg:px-0">
@@ -99,15 +100,19 @@ const About = () => {
             </motion.div>
             <div className="flex flex-col gap-2 md:gap-4 lg:gap-8 z-50">
                 <div className="flex flex-col lg:gap-2 items-center">
-                    <MaskText className="font-bold text-md sm:text-xl md:text-2xl lg:text-4xl">Our Clients</MaskText>
-                    <MaskText className="text-sm sm:text-md md:text-lg">
+                    <div className="font-bold text-md sm:text-xl md:text-2xl lg:text-4xl">Our Clients</div>
+                    <div className="text-sm sm:text-md md:text-lg">
                         We are proud to have worked with a diverse range of clients, from small businesses to large organizations.
-                    </MaskText>
+                    </div>
                 </div>
                 <div
                     className="flex">
                     <button onClick={() => swiperRef.current?.slidePrev()} className="block xl:hidden text-[#86654a] text-6xl"><RiArrowLeftWideLine /></button>
                     <Swiper
+                        autoplay={{
+                            delay: 4000,
+                            disableOnInteraction: false,
+                        }}
                         breakpoints={{
                             640: {
                                 slidesPerView: 3,
@@ -129,12 +134,13 @@ const About = () => {
                         }}
                         slidesPerView={2}
                         spaceBetween={10}
+                        modules={[Autoplay]}
                     >
                         {
                             customers?.map((value, key) => (
                                 <SwiperSlide key={key}>
-                                    <motion.img 
-                                        initial={{ opacity:0, scale: 0 }}
+                                    <motion.img
+                                        initial={{ opacity: 0, scale: 0 }}
                                         whileInView={{
                                             opacity: 1,
                                             scale: 1,
@@ -142,7 +148,7 @@ const About = () => {
                                                 duration: 0.3,
                                             }
                                         }}
-                                        className="h-16 md:h-24 object-contain sm:h-32" alt={value.name} src={value.logoUrl} 
+                                        className="h-16 md:h-24 object-contain sm:h-32" alt={value.name} src={value.logoUrl}
                                     />
                                 </SwiperSlide>
                             ))

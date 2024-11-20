@@ -87,7 +87,7 @@ const Contact = ({ contact }: { contact: contactProps }) => {
                         </div>
                         <div className="flex flex-col text-xs sm:text-sm md:text-md">
                             <MaskText className="">E-mail</MaskText>
-                            <MaskText className="font-bold">{process.env.NEXT_PUBLIC_EMAIL}</MaskText>
+                            <MaskText className="font-bold"><a className="underline" href={`mailto:${process.env.NEXT_PUBLIC_EMAIL}`} target="_blank">{process.env.NEXT_PUBLIC_EMAIL}</a></MaskText>
                         </div>
                     </div>
                     <div className="flex gap-2">
