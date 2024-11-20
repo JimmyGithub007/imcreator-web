@@ -138,11 +138,11 @@ const Home = () => {
           dispatch(setFloor(swiperCore.realIndex))
         }}
       >
-        <SwiperSlide><Panel /></SwiperSlide>
-        <SwiperSlide><About /></SwiperSlide>
-        <SwiperSlide><Service floorSwiper={swiper} /></SwiperSlide>
-        <SwiperSlide><Order /></SwiperSlide>
-        <SwiperSlide><Contact contact={contact} /></SwiperSlide>
+        <SwiperSlide style={{ overflow: "hidden" }}><Panel /></SwiperSlide>
+        <SwiperSlide style={{ overflow: "hidden" }}><About /></SwiperSlide>
+        <SwiperSlide style={{ overflow: "hidden" }}><Service floorSwiper={swiper} /></SwiperSlide>
+        <SwiperSlide style={{ overflow: "hidden" }}><Order /></SwiperSlide>
+        <SwiperSlide style={{ overflow: "hidden" }}><Contact contact={contact} /></SwiperSlide>
       </Swiper>
       <AnimatePresence>
         {floor < 4 && <motion.div
