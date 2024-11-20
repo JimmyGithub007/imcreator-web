@@ -105,7 +105,7 @@ const Order = () => {
                         <SwiperSlide className="py-2" key={key}>
                             <div className="bg-white border-2 border-[#86654a] flex flex-col p-2 rounded-sm shadow-md">
                                 <div className="flex h-64 items-center justify-center">
-                                    <img className="duration-100 object-contain h-64 hover:hue-rotate-30" alt="" src={value.imageUrl} />
+                                    <img className="cursor-pointer duration-200 object-contain h-64 hover:hue-rotate-30" alt="" src={value.imageUrl} />
                                 </div>
                                 <div className="flex justify-center h-16">
                                     <span className="font-bold text-center text-md lg:text-lg">{value.title}</span>

@@ -25,7 +25,7 @@ const Panel = () => {
     }
 
     const getBanners = async () => {
-        const bannerQuery = await getDocs(query(collection(db, "banners"), orderBy("sortingId"))); // updated
+        /*const bannerQuery = await getDocs(query(collection(db, "banners"), orderBy("sortingId"))); // updated
         const banners = bannerQuery.docs.map(async (doc) => {
             const b = doc.data();
             return {
@@ -35,7 +35,11 @@ const Panel = () => {
         });
 
         const resolvedBanners = await Promise.all(banners);
-        setBanners(resolvedBanners);
+        setBanners(resolvedBanners);*/
+
+        setBanners([
+            { "sortingId": 0, imageUrl: "/assets/panel/cover.png" }
+        ]);
     };
 
     useEffect(() => {
@@ -67,7 +71,7 @@ const Panel = () => {
                     delay: 3000,
                     disableOnInteraction: true,
                 }}
-                className="h-64 sm:h-80 md:h-96 rounded-2xl lg:w-[1024px]"
+                className="lg:w-[1024px]"
                 loop={true}
                 modules={[Autoplay]}
                 onSlideChange={(swiperCore) => {
@@ -90,7 +94,7 @@ const Panel = () => {
                                     duration: 1,
                                 }
                             }}
-                            className="border-2 border-black cursor-pointer h-64 sm:h-80 md:h-96 object-cover rounded-2xl lg:w-[1024px]" alt="" src={value.imageUrl} />
+                            className="border-2 border-black cursor-pointer object-cover lg:w-[1024px]" alt="" src={value.imageUrl} />
                         </SwiperSlide>
                     ))
                 }
