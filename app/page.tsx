@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { BsMessenger, BsWhatsapp } from "react-icons/bs";
 import { HiMenuAlt3 } from "react-icons/hi";
 import { IoIosClose } from "react-icons/io";
-import { About, Contact, Footer, FramerMagnetic, Loading, Navbar, Order, Panel, Service } from "@/components";
+import { About, Contact, Footer, FramerMagnetic, Loading, Navbar, Order, Panel, Project, Review, Service } from "@/components";
 import { plusFloor, minusFloor, setFloor } from "@/store/slice/floorSlice";
 import { AnimatePresence, motion } from "framer-motion";
 import { RootState } from "@/store";
@@ -22,9 +22,11 @@ const messengerUrl = process.env.NEXT_PUBLIC_MESSENGER;
 const menus = [
   { floor: 0, title: "HOME" },
   { floor: 1, title: "ABOUT" },
-  { floor: 2, title: "OUR SERVICES" },
-  { floor: 3, title: "CUSTOM MADE" },
-  { floor: 4, title: "CONTACT" }
+  { floor: 2, title: "RECENT PROJECT" },
+  { floor: 3, title: "CUSTOMER REVIEW" },
+  { floor: 4, title: "OUR SERVICES" },
+  { floor: 5, title: "HOW TO ORDER" },
+  { floor: 6, title: "CONTACT" }
 ];
 
 type contactProps = {
@@ -140,6 +142,9 @@ const Home = () => {
       >
         <SwiperSlide style={{ overflow: "hidden" }}><Panel /></SwiperSlide>
         <SwiperSlide style={{ overflow: "hidden" }}><About /></SwiperSlide>
+        <SwiperSlide style={{ overflow: "hidden" }}><Project /></SwiperSlide>
+        <SwiperSlide style={{ overflow: "hidden" }}><Review /></SwiperSlide>
+        <SwiperSlide style={{ overflow: "hidden" }}><Order /></SwiperSlide>
         <SwiperSlide style={{ overflow: "hidden" }}><Service floorSwiper={swiper} /></SwiperSlide>
         <SwiperSlide style={{ overflow: "hidden" }}><Order /></SwiperSlide>
         <SwiperSlide style={{ overflow: "hidden" }}><Contact contact={contact} /></SwiperSlide>

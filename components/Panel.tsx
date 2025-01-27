@@ -38,7 +38,7 @@ const Panel = () => {
         setBanners(resolvedBanners);*/
 
         setBanners([
-            { "sortingId": 0, imageUrl: "/assets/panel/cover.png" }
+            { "sortingId": 0, imageUrl: "/assets/panel/cover2.png" }
         ]);
     };
 

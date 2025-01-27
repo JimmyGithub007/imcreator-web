@@ -7,6 +7,8 @@ import MaskText from "./MaskText";
 import Navbar from "./Navbar";
 import Order from "./Order";
 import Panel from "./Panel";
+import Project from "./Project";
+import Review from "./Review";
 import Service from "./Service";
 import Shell from "./Shell";
 
@@ -20,6 +22,8 @@ export {
     Navbar,
     Order,
     Panel,
+    Project,
+    Review,
     Service,
     Shell,
 }
