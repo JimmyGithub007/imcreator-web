@@ -46,6 +46,8 @@ const Footer = ({ contact }: { contact: contactProps }) => {
         <div className="flex flex-col text-xs sm:text-center">
             <span>IMCREATOR APPAREL SDN. BHD.</span>
             <span>202401016159 (1562009-X)</span>
+            <span>IMCREATOR TRADING </span>
+            <span>(CO. Registration No.: 53470698C)</span>
         </div>
     </div>)
 }

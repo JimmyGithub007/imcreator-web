@@ -96,7 +96,7 @@ const Contact = ({ contact }: { contact: contactProps }) => {
                         </div>
                         <div className="flex flex-col text-xs sm:text-sm md:text-md">
                             <MaskText className="">Contact Number</MaskText>
-                            <MaskText className="font-bold">60 12-754 0007 / 60 16-755 5707</MaskText>
+                            <MaskText className="font-bold">60 16-755 5707 / 60 12-754 0007</MaskText>
                         </div>
                     </div>
                 </div>

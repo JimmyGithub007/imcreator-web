@@ -7,7 +7,6 @@ import { RootState } from "@/store";
 import { setFloor } from "@/store/slice/floorSlice";
 import { IoIosClose } from "react-icons/io";
 import { HiMenuAlt3 } from "react-icons/hi";
-import { Footer } from ".";
 import Image from "next/image";
 
 const menus = [
