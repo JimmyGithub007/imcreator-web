@@ -1,15 +1,13 @@
 "use client";
 
 import { FaPhoneAlt } from "react-icons/fa";
+import { RiWhatsappFill } from "react-icons/ri";
 import { MdMail } from "react-icons/md";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { addDoc, collection, getDocs, limit, query } from "firebase/firestore";
-import { db } from "@/firebase/config";
-import { delay, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import { Footer, MaskText } from ".";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
-import nodemailer from 'nodemailer';
+import { useState } from "react";
 import { Alert, CircularProgress, Snackbar } from "@mui/material";
 
 type messageProps = {
@@ -71,7 +69,7 @@ const Contact = ({ contact }: { contact: contactProps }) => {
     }
 
     return (<div id="floor4" className="flex flex-col items-center">
-        <div className="flex items-center lg:w-[1024px] h-[calc(100vh-240px)] px-8">
+        <div className="flex items-center lg:w-[1024px] h-[calc(100vh-266px)] px-8">
             <div className="grid grid-cols-1 gap-2 sm:gap-4 md:grid-cols-2">
                 <div className="flex flex-col gap-1 sm:gap-4">
                     <MaskText className="font-bold text-xl sm:text-2xl md:text-3xl lg:text-4xl">Contact Us</MaskText>
@@ -87,7 +85,16 @@ const Contact = ({ contact }: { contact: contactProps }) => {
                         </div>
                         <div className="flex flex-col text-xs sm:text-sm md:text-md">
                             <MaskText className="">E-mail</MaskText>
-                            <MaskText className="font-bold"><a className="underline" href={`mailto:${process.env.NEXT_PUBLIC_EMAIL}`} target="_blank">{process.env.NEXT_PUBLIC_EMAIL}</a></MaskText>
+                            <MaskText className="font-bold">
+                                <a className="underline" href={`mailto:${process.env.NEXT_PUBLIC_EMAIL_1}`} target="_blank">
+                                    {process.env.NEXT_PUBLIC_EMAIL_1}
+                                </a>
+                            </MaskText>
+                            <MaskText className="font-bold">
+                                <a className="underline" href={`mailto:${process.env.NEXT_PUBLIC_EMAIL_2}`} target="_blank">
+                                    {process.env.NEXT_PUBLIC_EMAIL_2}
+                                </a>
+                            </MaskText>
                         </div>
                     </div>
                     <div className="flex gap-2">
@@ -96,7 +103,16 @@ const Contact = ({ contact }: { contact: contactProps }) => {
                         </div>
                         <div className="flex flex-col text-xs sm:text-sm md:text-md">
                             <MaskText className="">Contact Number</MaskText>
-                            <MaskText className="font-bold">6012-7540542 / 6016-7555707 / 6580135766</MaskText>
+                            <div className="flex gap-1">
+                                <RiWhatsappFill className="text-[#25D366] shrink-0 text-lg sm:text-xl" />
+                                <MaskText className="font-bold flex items-center gap-1.5 flex-wrap">
+                                    <a href="https://wa.me/6580135766" target="_blank" rel="noopener noreferrer" className="underline hover:opacity-80" aria-label="WhatsApp: +6580135766">+6580135766</a>
+                                    {' / '}
+                                    <a href="https://wa.me/6560127540542" target="_blank" rel="noopener noreferrer" className="underline hover:opacity-80" aria-label="WhatsApp: +6560127540542">+6560127540542</a>
+                                    {' / '}
+                                    <a href="https://wa.me/6560167555707" target="_blank" rel="noopener noreferrer" className="underline hover:opacity-80" aria-label="WhatsApp: +6560167555707">+6560167555707</a>
+                                </MaskText>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -106,7 +122,7 @@ const Contact = ({ contact }: { contact: contactProps }) => {
                     <motion.input
                         initial={{ opacity: 0 }}
                         whileInView={{ opacity: 1, transition: { delay: 0.1, duration: 0.5 } }}
-                        className={`border-[#d0c7c1] bg-[#d0c7c1] border-2 custom-input duration-300 focus:border-[inherit] focus:ring-2 focus:outline-none focus:ring-[#d0c7c1] px-2 py-1 sm:py-3 rounded-md shadow-md w-full`}
+                        className={`border-[#d0c7c1] bg-[#d0c7c1] border-2 custom-input duration-300 focus:border-[inherit] focus:ring-2 focus:outline-none focus:ring-[#d0c7c1] px-4 py-1 sm:py-3 rounded-md shadow-md w-full`}
                         placeholder={`NAME`}
                         type={`text`}
                         {...register("name", { required: "Name is required", })}
@@ -115,7 +131,7 @@ const Contact = ({ contact }: { contact: contactProps }) => {
                     <motion.input
                         initial={{ opacity: 0 }}
                         whileInView={{ opacity: 1, transition: { delay: 0.2, duration: 0.5 } }}
-                        className={`border-[#d0c7c1] bg-[#d0c7c1] border-2 custom-input duration-300 focus:border-[inherit] focus:ring-2 focus:outline-none focus:ring-[#d0c7c1] px-2 py-1 sm:py-3 rounded-md shadow-md w-full`}
+                        className={`border-[#d0c7c1] bg-[#d0c7c1] border-2 custom-input duration-300 focus:border-[inherit] focus:ring-2 focus:outline-none focus:ring-[#d0c7c1] px-4 py-1 sm:py-3 rounded-md shadow-md w-full`}
                         placeholder={`E-MAIL`}
                         type={`text`}
                         {...register("email",
@@ -132,7 +148,7 @@ const Contact = ({ contact }: { contact: contactProps }) => {
                     <motion.input
                         initial={{ opacity: 0 }}
                         whileInView={{ opacity: 1, transition: { delay: 0.3, duration: 0.5 } }}
-                        className={`border-[#d0c7c1] bg-[#d0c7c1] border-2 custom-input duration-300 focus:border-[inherit] focus:ring-2 focus:outline-none focus:ring-[#d0c7c1] px-2 py-1 sm:py-3 rounded-md shadow-md w-full`}
+                        className={`border-[#d0c7c1] bg-[#d0c7c1] border-2 custom-input duration-300 focus:border-[inherit] focus:ring-2 focus:outline-none focus:ring-[#d0c7c1] px-4 py-1 sm:py-3 rounded-md shadow-md w-full`}
                         placeholder={`SUBJECT`}
                         type={`text`}
                         {...register("subject", { required: "Subject is required", })}
@@ -141,7 +157,7 @@ const Contact = ({ contact }: { contact: contactProps }) => {
                     <motion.textarea
                         initial={{ opacity: 0 }}
                         whileInView={{ opacity: 1, transition: { delay: 0.4, duration: 0.5 } }}
-                        className={`border-[#d0c7c1] bg-[#d0c7c1] border-2 custom-input duration-300 focus:border-[inherit] focus:ring-2 focus:outline-none focus:ring-[#d0c7c1] px-2 py-1 sm:py-3 resize-none rounded-md shadow-md w-full`}
+                        className={`border-[#d0c7c1] bg-[#d0c7c1] border-2 custom-input duration-300 focus:border-[inherit] focus:ring-2 focus:outline-none focus:ring-[#d0c7c1] px-4 py-1 sm:py-3 resize-none rounded-md shadow-md w-full`}
                         placeholder={`MESSAGE`}
                         rows={4}
                         {...register("message", { required: "Message is required", })}
@@ -168,7 +184,7 @@ const Contact = ({ contact }: { contact: contactProps }) => {
                 }
             }}
             className="hidden justify-center w-screen md:flex">
-            <Footer contact={contact} />
+            <Footer />
         </motion.div>
         <Snackbar
             autoHideDuration={10000}

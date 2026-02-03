@@ -144,9 +144,8 @@ const Home = () => {
         <SwiperSlide style={{ overflow: "hidden" }}><About /></SwiperSlide>
         <SwiperSlide style={{ overflow: "hidden" }}><Project /></SwiperSlide>
         <SwiperSlide style={{ overflow: "hidden" }}><Review /></SwiperSlide>
-        <SwiperSlide style={{ overflow: "hidden" }}><Order /></SwiperSlide>
         <SwiperSlide style={{ overflow: "hidden" }}><Service floorSwiper={swiper} /></SwiperSlide>
-        <SwiperSlide style={{ overflow: "hidden" }}><Order /></SwiperSlide>
+        <SwiperSlide style={{ overflow: "hidden" }}><Order floorSwiper={swiper} /></SwiperSlide>
         <SwiperSlide style={{ overflow: "hidden" }}><Contact contact={contact} /></SwiperSlide>
       </Swiper>
       <AnimatePresence>
@@ -221,7 +220,7 @@ const Home = () => {
               }
             </div>
             <div className="border-black bg-white border-2 m-4 rounded-lg shadow-sm">
-              <Footer contact={contact} />
+              <Footer />
             </div>
           </motion.div>
         }
