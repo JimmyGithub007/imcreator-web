@@ -24,13 +24,17 @@ type customMadeStepsProps = {
 }
 
 const customMadeSteps:customMadeStepsProps[] = [
-    { title: "Select Apparel Pattern", imageUrl: "/assets/orders/customMadeStep2.jpg" },
-    { title: "Choose Color & Material", imageUrl: "/assets/orders/customMadeStep1.jpg" },
-    { title: "Confirm Your Design", imageUrl: "/assets/orders/customMadeStep3.jpg" },
-    { title: "Leave your Contact Information", imageUrl: "/assets/orders/customMadeStep4.jpg" }
+    { title: "Select Apparel Pattern", imageUrl: "/assets/orders/customMadeStep1.png" },
+    { title: "Choose Color & Material", imageUrl: "/assets/orders/customMadeStep2.png" },
+    { title: "Confirm Your Design", imageUrl: "/assets/orders/customMadeStep3.png" },
+    { title: "Leave your Contact Information", imageUrl: "/assets/orders/customMadeStep4.png" }
 ]
 
-const Order = () => {
+type OrderProps = {
+    floorSwiper?: { slideTo: (index: number) => void } | null;
+};
+
+const Order = ({ floorSwiper }: OrderProps) => {
     const swiperRef = useRef<any>();
     const [ step, setStep ] = useState<number>(0);
     {/*const [orderSteps, setOrderSteps] = useState<orderStepPros[]>();
@@ -56,7 +60,7 @@ const Order = () => {
 
     return (<div id="floor3" className="flex flex-col gap-8 items-center">
         <div className="flex flex-col sm:gap-4 items-center lg:w-[800px] px-8">
-            <MaskText className="font-bold text-xl sm:text-2xl md:text-3xl lg:text-4xl">CUSTOM MADE</MaskText>
+            <MaskText className="font-bold text-xl sm:text-2xl md:text-3xl lg:text-4xl">HOW TO ORDER</MaskText>
             {/*<MaskText className="text-sm sm:text-md md:text-lg">Highlight your identity and express yourself through clothes.</MaskText>*/}
         </div>
         <motion.div
@@ -103,9 +107,15 @@ const Order = () => {
                 {
                     customMadeSteps?.map((value, key) => (
                         <SwiperSlide className="py-2" key={key}>
-                            <div className="bg-white border-2 border-[#86654a] flex flex-col p-2 rounded-sm shadow-md">
+                            <div
+                                role={key === 3 ? "button" : undefined}
+                                tabIndex={key === 3 ? 0 : undefined}
+                                onClick={key === 3 ? () => floorSwiper?.slideTo(6) : undefined}
+                                onKeyDown={key === 3 ? (e) => { if (e.key === "Enter" || e.key === " ") floorSwiper?.slideTo(6); } : undefined}
+                                className={`${key === 3 ? "cursor-pointer" : ""} bg-white border-2 border-[#86654a] flex flex-col p-2 rounded-sm shadow-md`}
+                            >
                                 <div className="flex h-64 items-center justify-center">
-                                    <img className="cursor-pointer duration-200 object-contain h-64 hover:hue-rotate-30" alt="" src={value.imageUrl} />
+                                    <img className="object-contain h-64 opacity-80" alt="" src={value.imageUrl} />
                                 </div>
                                 <div className="flex justify-center h-16">
                                     <span className="font-bold text-center text-md lg:text-lg">{value.title}</span>

@@ -26,6 +26,14 @@ const Project = () => {
 
     const getProjects = async () => {
         setProjects([
+            { url: "/assets/projects/IMG_0001.jpg" },
+            { url: "/assets/projects/IMG_0002.jpg" },
+            { url: "/assets/projects/IMG_0003.jpg" },
+            { url: "/assets/projects/IMG_0004.jpg" },
+            { url: "/assets/projects/IMG_0005.jpg" },
+            { url: "/assets/projects/IMG_0006.jpeg" },
+            { url: "/assets/projects/IMG_0007.jpg" },
+            { url: "/assets/projects/IMG_0008.jpg" },
             { url: "/assets/projects/IMG_0094.jpg" },
             { url: "/assets/projects/IMG_0095.jpg" },
             { url: "/assets/projects/IMG_0123.jpg" },
@@ -138,7 +146,7 @@ const Project = () => {
                                                 duration: 1,
                                             }
                                         }}
-                                        className="object-contain" alt={`review`} src={value.url}
+                                        className="object-contain shadow-lg" alt={`review`} src={value.url}
                                     />
                                 </SwiperSlide>
                             ))
