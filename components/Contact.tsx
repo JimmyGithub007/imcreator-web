@@ -75,13 +75,13 @@ const Contact = () => {
                         <div className="flex flex-col text-xs sm:text-sm md:text-md">
                             <MaskText className="">E-mail</MaskText>
                             <MaskText className="font-bold">
-                                <a className="underline" href={`mailto:${process.env.NEXT_PUBLIC_EMAIL_1}`} target="_blank">
-                                    {process.env.NEXT_PUBLIC_EMAIL_1}
+                                <a className="underline" href={`mailto:sales@imcreator.asia`} target="_blank">
+                                    sales@imcreator.asia
                                 </a>
                             </MaskText>
                             <MaskText className="font-bold">
-                                <a className="underline" href={`mailto:${process.env.NEXT_PUBLIC_EMAIL_2}`} target="_blank">
-                                    {process.env.NEXT_PUBLIC_EMAIL_2}
+                                <a className="underline" href={`mailto:admin@imcreator.asia`} target="_blank">
+                                    admin@imcreator.asia
                                 </a>
                             </MaskText>
                         </div>
