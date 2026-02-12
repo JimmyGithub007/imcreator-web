@@ -6,17 +6,14 @@ import { BsMessenger, BsWhatsapp } from "react-icons/bs";
 import { HiMenuAlt3 } from "react-icons/hi";
 import { IoIosClose } from "react-icons/io";
 import { About, Contact, Footer, FramerMagnetic, Loading, Navbar, Order, Panel, Project, Review, Service } from "@/components";
-import { plusFloor, minusFloor, setFloor } from "@/store/slice/floorSlice";
+import { setFloor } from "@/store/slice/floorSlice";
 import { AnimatePresence, motion } from "framer-motion";
 import { RootState } from "@/store";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Mousewheel } from 'swiper/modules';
-import { collection, getDocs, limit, query } from "firebase/firestore";
-import { db } from "@/firebase/config";
 import Image from "next/image";
 import 'swiper/css';
 
-const whatsappUrl = process.env.NEXT_PUBLIC_WHATSAPP;
 const messengerUrl = process.env.NEXT_PUBLIC_MESSENGER;
 
 const menus = [
@@ -29,49 +26,12 @@ const menus = [
   { floor: 6, title: "CONTACT" }
 ];
 
-type contactProps = {
-  email: string,
-  addressLine1: string,
-  addressLine2: string,
-  facebook: string,
-  instagram: string,
-  phoneNo: string,
-}
-
 const Home = () => {
   const dispatch = useDispatch();
   const [ loading, setLoading ] = useState<boolean>(true);
   const [ swiper, setSwiper ] = useState<any>(null);
   const [ isOpen, setIsOpen ] = useState<boolean>(false);
   const { floor } = useSelector((state: RootState) => state.floor);
-  const [contact, setContact] = useState<contactProps>({
-    email: "",
-    addressLine1: "",
-    addressLine2: "",
-    facebook: "",
-    instagram: "",
-    phoneNo: "",
-  });
-
-  const getContact = async () => {
-    const q = query(collection(db, "contact"), limit(1));
-    const contactSnapshot = await getDocs(q);
-    if (contactSnapshot.docs.length > 0) {
-      const contactTemp = contactSnapshot.docs[0].data();
-      setContact({
-        email: contactTemp.email,
-        addressLine1: contactTemp.addressLine1,
-        addressLine2: contactTemp.addressLine2,
-        facebook: contactTemp.facebook,
-        instagram: contactTemp.instagram,
-        phoneNo: contactTemp.phoneNo,
-      })
-    }
-  }
-
-  useEffect(() => {
-    getContact();
-  }, [])
 
   useEffect(() => {
     const timeoutId = setTimeout(() => {
@@ -146,7 +106,7 @@ const Home = () => {
         <SwiperSlide style={{ overflow: "hidden" }}><Review /></SwiperSlide>
         <SwiperSlide style={{ overflow: "hidden" }}><Service floorSwiper={swiper} /></SwiperSlide>
         <SwiperSlide style={{ overflow: "hidden" }}><Order floorSwiper={swiper} /></SwiperSlide>
-        <SwiperSlide style={{ overflow: "hidden" }}><Contact contact={contact} /></SwiperSlide>
+        <SwiperSlide style={{ overflow: "hidden" }}><Contact /></SwiperSlide>
       </Swiper>
       <AnimatePresence>
         {floor < 4 && <motion.div
@@ -159,7 +119,7 @@ const Home = () => {
           }}
           className="fixed bottom-4 right-16 gap-2 hidden sm:flex z-50">
           <FramerMagnetic><BsMessenger className="cursor-pointer duration-300 hover:opacity-80 text-[#86654a] text-5xl" onClick={() => window.open(messengerUrl, '_blank')} /></FramerMagnetic>
-          <FramerMagnetic><BsWhatsapp className="cursor-pointer duration-300 hover:opacity-80 text-[#86654a] text-5xl" onClick={() => window.open(whatsappUrl, '_blank')} /></FramerMagnetic>
+          <FramerMagnetic><BsWhatsapp className="cursor-pointer duration-300 hover:opacity-80 text-[#86654a] text-5xl" onClick={() => window.open("https://wa.me/6580135766", '_blank')} /></FramerMagnetic>
         </motion.div>}
       </AnimatePresence>
       <motion.div className="flex sm:hidden flex-col gap-2 fixed left-2 top-[50%]">

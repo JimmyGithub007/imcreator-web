@@ -2,10 +2,8 @@
 "use client";
 
 import { MaskText } from ".";
-import { db } from "@/firebase/config";
 import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
-import { collection, getDocs, orderBy, query } from "firebase/firestore";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay } from 'swiper/modules';
 

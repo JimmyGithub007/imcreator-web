@@ -6,7 +6,6 @@ import { MdMail } from "react-icons/md";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { motion } from "framer-motion";
 import { Footer, MaskText } from ".";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Alert, CircularProgress, Snackbar } from "@mui/material";
 
@@ -17,20 +16,10 @@ type messageProps = {
     message: string,
 }
 
-type contactProps = {
-    email: string,
-    addressLine1: string,
-    addressLine2: string,
-    facebook: string,
-    instagram: string,
-    phoneNo: string,
-}
-
-const Contact = ({ contact }: { contact: contactProps }) => {
+const Contact = () => {
     const [ sending, setSending ] = useState<boolean>(false);
     const [ message, setMessage ] = useState<string>("");
     const [ severity, setSeverity ] = useState<"success" | "info" | "warning" | "error">("info");
-    const router = useRouter();
     const { register, handleSubmit, formState: { errors }, reset, control, getValues, setError, clearErrors } = useForm<messageProps>();
 
     const onSubmit: SubmitHandler<messageProps> = async (data) => {

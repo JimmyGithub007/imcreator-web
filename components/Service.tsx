@@ -1,11 +1,9 @@
 "use client";
 
-//import { collection, getDocs, query } from 'firebase/firestore';
 import { motion } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
 import { RiArrowLeftWideLine, RiArrowRightWideLine } from 'react-icons/ri';
 import { Swiper, SwiperSlide } from 'swiper/react';
-//import { db } from '@/firebase/config';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
