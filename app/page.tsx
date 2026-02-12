@@ -109,7 +109,7 @@ const Home = () => {
         <SwiperSlide style={{ overflow: "hidden" }}><Contact /></SwiperSlide>
       </Swiper>
       <AnimatePresence>
-        {floor < 4 && <motion.div
+        {floor < 6 && <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 50 }}
@@ -124,7 +124,7 @@ const Home = () => {
       </AnimatePresence>
       <motion.div className="flex sm:hidden flex-col gap-2 fixed left-2 top-[50%]">
         {
-          [0, 1, 2, 3, 4].map((_, key) => (
+          [0, 1, 2, 3, 4, 5, 6].map((_, key) => (
             <button key={key} className={`${floor === key ? "bg-[#86654a] scale-[1.7]" : "bg-[#86654a]/40"} duration-300 h-2 rounded-full shadow-sm shadow-blue-950/40 w-2`}></button>
           ))
         }
