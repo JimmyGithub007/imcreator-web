@@ -97,9 +97,9 @@ const Contact = () => {
                                 <MaskText className="font-bold flex items-center gap-1.5 flex-wrap">
                                     <a href="https://wa.me/6580135766" target="_blank" rel="noopener noreferrer" className="underline hover:opacity-80" aria-label="WhatsApp: +6580135766">+6580135766</a>
                                     {' / '}
-                                    <a href="https://wa.me/6560127540542" target="_blank" rel="noopener noreferrer" className="underline hover:opacity-80" aria-label="WhatsApp: +6560127540542">+6560127540542</a>
+                                    <a href="https://wa.me/60127540542" target="_blank" rel="noopener noreferrer" className="underline hover:opacity-80" aria-label="WhatsApp: +60127540542">+60127540542</a>
                                     {' / '}
-                                    <a href="https://wa.me/6560167555707" target="_blank" rel="noopener noreferrer" className="underline hover:opacity-80" aria-label="WhatsApp: +6560167555707">+6560167555707</a>
+                                    <a href="https://wa.me/60167555707" target="_blank" rel="noopener noreferrer" className="underline hover:opacity-80" aria-label="WhatsApp: +60167555707">+60167555707</a>
                                 </MaskText>
                             </div>
                         </div>
